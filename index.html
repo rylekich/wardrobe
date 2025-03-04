@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/gh/alvinashiatey/Sheets@latest/dist/sheets.umd.min.js"></script>
+    <title>Kyle's Closet</title>
+    <link rel="stylesheet" href="styles-r4.css">
+  </head>
+  <body>
+    <main>
+        
+            <section id="head">
+                <h2>Hats</h2>
+            </section>
+            <section id="dresses">
+                <h2>Dresses</h2>
+            </section>
+            <section id="sweaters">
+                <h2>Sweaters</h2>
+            </section>
+            <section id="shoulders">
+                <h2>Tops</h2>
+            </section>
+            <section id="knees">
+                <h2>Bottoms</h2>
+            </section>
+            <section id="toes">
+                <h2>Shoes</h2>
+            </section>
+            <section id="outerwear">
+                <h2>Outerwear</h2>
+            </section>
+
+        <footer class="misc"></footer>
+    </main>
+   
+        <script>
+                // the class Sheet is from the fetched sheets.umd.min.js
+            const sheetID = "1pfsEH_IVc4YeNESWORLIX7veEu_rR84YwnsaNTwsvjM";
+            const sheet = new Sheets(sheetID);
+
+            sheet.getMyData().then(function (data){
+                console.log(data);
+                const clothingType = data["Type"];
+                const collapsedRows = sheet.collapseKeys(
+                    "Item",
+                    "Photo",
+                    "Type",
+                    "Brand",
+                    "Feel good in it",
+                    "Cost",
+                    "Condition"
+                    );
+
+                for (const row of collapsedRows) {
+                sheet.createElement({
+                    tag: "div",
+                    className: `item ${row["Type"]}`,
+                    children: [
+                        {tag: "img", attributes: {
+                            src: row["Photo"],
+                            },
+                        },
+                        {tag: "p", className: "brand", content: row["Brand"]},
+                        {tag: "p", className: "clothing-type", content: row["Type"]},
+                        {tag: "p", className: "condition", content: `✿ Condition: `+ row["Condition"]},
+                        {tag: "p", className: "hate-or-love", content: `✰ Feel Good: `+ row["Feel good in it"]},
+                        {tag: "p", className: "cost", content: `❥ Paid: `+ row["Cost"]}
+                        ],
+                })
+                .appendTo(".misc");
+                }
+
+                const hats = document.querySelectorAll('div.Hat');
+                const hatsSec = document.getElementById('head');
+
+                const dresses = document.querySelectorAll('div.Dress');
+                const dressSec = document.getElementById('dresses');
+
+                const sweaters = document.querySelectorAll('div.Sweater');
+                const sweaterSec = document.getElementById('sweaters');
+
+                const tops = document.querySelectorAll('div.Top');
+                const topSec = document.getElementById('shoulders');
+
+                const outerwear = document.querySelectorAll('div.Outerwear');
+                const outerSec = document.getElementById('outerwear');
+
+                const bottoms = document.querySelectorAll('div.Bottom');
+                const bottomSec = document.getElementById('knees');
+
+                const shoes = document.querySelectorAll('div.Shoes');
+                const shoesSec = document.getElementById('toes');
+
+                if (bottomSec) {
+                    bottoms.forEach(div => {
+                        bottomSec.appendChild(div);
+                    });
+                }
+
+                if (topSec) {
+                    tops.forEach(div => {
+                        topSec.appendChild(div);
+                    });
+                }
+
+                if (shoesSec) {
+                    shoes.forEach(div => {
+                        shoesSec.appendChild(div);
+                    });
+                }
+
+                if (hatsSec) {
+                    hats.forEach(div => {
+                        hatsSec.appendChild(div);
+                    });
+                }
+
+                if (dressSec) {
+                    dresses.forEach(div => {
+                        dressSec.appendChild(div);
+                    });
+                }
+
+                if (sweaterSec) {
+                    sweaters.forEach(div => {
+                        sweaterSec.appendChild(div);
+                    });
+                }
+
+                if (outerSec) {
+                    outerwear.forEach(div => {
+                        outerSec.appendChild(div);
+                    });
+                }
+
+            });
+        </script>
+
+
+    </body>
+</html>
