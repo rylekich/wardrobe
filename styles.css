@@ -120,6 +120,7 @@
         text-transform: uppercase;
         margin: 15px 0px;
         font-weight: bold;
+        writing-mode: vertical-lr;
       }
 
       aside#fitting-room{
@@ -135,7 +136,7 @@
       }
 
       #fitting-room > img {
-        width: 200px;
+        width: 250px;
         height: 100%;
         object-fit: cover;
         vertical-align: top;
@@ -152,3 +153,9 @@
       footer a{
         margin-left: 5px;
       }
+
+  @media only screen and (max-width: 500px) {
+      #fitting-room > img {
+      width: 170px;
+    }
+}
