@@ -109,7 +109,7 @@
 
       h1 {
         text-transform: lowercase;
-        writing-mode: sideways-lr;
+        writing-mode: vertical-lr;
         align-self: flex-start;
         padding-bottom: 10px;
         position: absolute;
