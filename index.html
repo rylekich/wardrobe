@@ -4,18 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RICHARDSON WARDROBE ONLINE</title>
+    <title>WARDROBE ONLINE</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <aside id="fitting-room">
-      <!-- <img src="https://d2w9rnfcy7mm78.cloudfront.net/39177287/original_733117f43ecc354ae94bafd3c9ca20a1.jpg?1756593921?bc=0">
-      <img src="https://d2w9rnfcy7mm78.cloudfront.net/39177287/original_733117f43ecc354ae94bafd3c9ca20a1.jpg?1756593921?bc=0">
-      <img src="https://d2w9rnfcy7mm78.cloudfront.net/39177287/original_733117f43ecc354ae94bafd3c9ca20a1.jpg?1756593921?bc=0"> -->
-      <!-- <img src="https://d2w9rnfcy7mm78.cloudfront.net/39177287/original_733117f43ecc354ae94bafd3c9ca20a1.jpg?1756593921?bc=0">
-      <img src="https://d2w9rnfcy7mm78.cloudfront.net/39177287/original_733117f43ecc354ae94bafd3c9ca20a1.jpg?1756593921?bc=0">
-      <img src="https://d2w9rnfcy7mm78.cloudfront.net/39177287/original_733117f43ecc354ae94bafd3c9ca20a1.jpg?1756593921?bc=0">
-      <img src="https://d2w9rnfcy7mm78.cloudfront.net/39177287/original_733117f43ecc354ae94bafd3c9ca20a1.jpg?1756593921?bc=0"> -->
+        <h1>kyle richardson wardrobe online</h1>
     </aside>
     <main>
             <section id="head">
@@ -39,34 +33,10 @@
             <section id="outerwear">
                 <h2>Outerwear</h2>
             </section>
-        <footer class="misc">
-          <h1>Richardson Wardrobe Online </h1>
-          <a href="#fitting-room">fitting room→</a>
-        </footer>
+        <footer class="misc"> </footer>
     </main>
 
         <script>
-          // Adding clothes to the fitting room
-
-          // when i click this image, add it to the fitting room div
-          // limit of one image per category
-          // limit of 7 images max in the fitting room div
-          // on click toggle fitting room visibility
-
-          document.addEventListener('DOMContentLoaded', function() {
-
-          // Example for multiple elements with a class
-          const pieces = document.querySelectorAll('img');
-          const fittingRoom = document.querySelector('aside#fitting-room')
-
-          pieces.forEach(piece => {
-              piece.addEventListener('click', function() {
-                  console.log('img clicked:', this.textContent);
-              });
-          });
-      });
-
-
             const API =
               "https://script.google.com/macros/s/AKfycbwHLt452t8JDefnlGuGHiyP_KBmuJXIUunRrQ25g4UhlCmcH6IkvdaxdcgaLy6vYCVO/exec";
       
@@ -129,13 +99,31 @@
               .then(({ data }) => {
                 const container = document.querySelector(".misc");
                 const fragment = document.createDocumentFragment();
-      
+
                 for (const row of data[0].children) {
                   fragment.appendChild(createClothingItem(row));
                 }
-      
+
                 container.appendChild(fragment);
                 organizeItemsByType();
+
+                // Now images exist, attach listeners
+                const pieces = document.querySelectorAll("img");
+                const fittingRoom = document.querySelector("aside#fitting-room");
+
+                pieces.forEach((piece) => {
+                  piece.addEventListener("click", function () {
+                    console.log("img clicked:", this.src);
+                    fittingRoom.appendChild(this.cloneNode());
+                  });
+                });
+
+                fittingRoom.addEventListener("click", function (e) {
+                  if (e.target.tagName === "IMG") {
+                    e.target.remove(); // removes the clicked image
+                  }
+                });
+
               })
               .catch((err) => console.error("Error fetching API:", err));
           </script>

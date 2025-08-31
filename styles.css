@@ -109,6 +109,11 @@
 
       h1 {
         text-transform: lowercase;
+        writing-mode: sideways-lr;
+        align-self: flex-start;
+        padding-bottom: 10px;
+        position: absolute;
+        right: 10px;
       }
 
       h2 {
@@ -120,7 +125,7 @@
       aside#fitting-room{
         height: 100vh;
         background-color: aliceblue;
-        padding: 10px;
+        padding: 15px 25px 15px 15px;
         display: flex;
         flex-direction: column;
         position: fixed;
@@ -132,7 +137,7 @@
       #fitting-room > img {
         width: 200px;
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
         vertical-align: top;
       }
 
@@ -141,6 +146,7 @@
         position: fixed;
         bottom: 10px;
         left: 10px;
+        background: aliceblue;
       }
 
       footer a{
